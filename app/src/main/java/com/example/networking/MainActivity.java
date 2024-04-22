@@ -24,4 +24,12 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         Log.d("MainActivity", json);
     }
 
+    ArrayList<RecyclerViewItem> items = new ArrayList<>(Arrays.asList(
+            new RecyclerViewItem("Matterhorn"),
+            new RecyclerViewItem("Mont Blanc"),
+            new RecyclerViewItem("Denali")
+    ));
+
+
 }
+
