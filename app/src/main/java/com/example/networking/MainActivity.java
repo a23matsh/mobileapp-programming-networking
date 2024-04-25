@@ -54,8 +54,13 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
         recyclerView.setAdapter(adapter);
 
+
+
         new JsonFile(this, this).execute(JSON_FILE);
         new JsonTask(this).execute(JSON_URL);
+
+
+
     }
 
     @Override
@@ -66,6 +71,14 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         // Unmarshall JSON -> list of objects
         Type type = new TypeToken<List<Mountain>>() {}.getType();
         listOfMountains = gson.fromJson(json, type);
+
+        for (Mountain mountain : listOfMountains) {
+            items.add(new RecyclerViewItem(mountain.getName()));
+
+
+        }
+
+        adapter.notifyDataSetChanged();
     }
 
 }

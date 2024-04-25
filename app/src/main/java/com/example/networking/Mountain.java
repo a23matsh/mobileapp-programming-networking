@@ -11,6 +11,9 @@ public class Mountain {
         @SerializedName("size")
         private int meter;
 
+        public String getName(){
+                return this.name;
+        }
 
     }
 
