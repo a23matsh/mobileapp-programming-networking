@@ -2,13 +2,12 @@ package com.example.networking;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.danieloskarsson.recyclerviewapp.RecyclerViewItem;
 
 import java.sql.Array;
 import java.util.ArrayList;
@@ -31,14 +30,13 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
         recyclerView = findViewById(R.id.recycler_view); // Make sure you have a RecyclerView with this ID in your layout
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
 
         items = new ArrayList<>(Arrays.asList(
                 new RecyclerViewItem("Matterhorn"),
                 new RecyclerViewItem("Mont Blanc"),
                 new RecyclerViewItem("Denali")
         ));
-
-
 
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, items, new RecyclerViewAdapter.OnClickListener() {
             @Override
@@ -47,12 +45,14 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
             }
         });
 
-
+        recyclerView.setAdapter(adapter);
+/*
         ArrayList<RecyclerViewItem> items = new ArrayList<>(Arrays.asList(
                 new RecyclerViewItem("Matterhorn"),
                 new RecyclerViewItem("Mont Blanc"),
                 new RecyclerViewItem("Denali")
-    }
+        ));
+*/
 
 
         new JsonFile(this, this).execute(JSON_FILE);

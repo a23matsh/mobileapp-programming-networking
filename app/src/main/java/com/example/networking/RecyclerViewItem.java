@@ -1,4 +1,4 @@
-package com.danieloskarsson.recyclerviewapp;
+package com.example.networking;
 
 @SuppressWarnings("WeakerAccess")
 public class RecyclerViewItem {
