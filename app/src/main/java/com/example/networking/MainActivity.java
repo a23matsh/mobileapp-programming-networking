@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     private final String JSON_URL = "https://mobprog.webug.se/json-api?login=brom";
     private final String JSON_FILE = "mountains.json";
 
-    private RecyclerView recyclerView;
-    private RecyclerViewAdapter adapter;
+    //private RecyclerView recyclerView;
+
     private ArrayList<RecyclerViewItem> items;
 
     private List<Mountain> listOfMountains;
@@ -35,9 +35,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = findViewById(R.id.recycler_view); // Make sure you have a RecyclerView with this ID in your layout
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+
 
         items = new ArrayList<>(Arrays.asList(
                 new RecyclerViewItem("Matterhorn"),
@@ -52,14 +50,21 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
             }
         });
 
+        RecyclerView recyclerView = findViewById(R.id.recycler_view); // Make sure you have a RecyclerView with this ID in your layout
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-
 
 
         new JsonFile(this, this).execute(JSON_FILE);
         new JsonTask(this).execute(JSON_URL);
 
+        for (Mountain mountain : listOfMountains) {
+            items.add(new RecyclerViewItem(mountain.getName()));
 
+
+        }
+
+        adapter.notifyDataSetChanged();
 
     }
 
@@ -72,13 +77,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         Type type = new TypeToken<List<Mountain>>() {}.getType();
         listOfMountains = gson.fromJson(json, type);
 
-        for (Mountain mountain : listOfMountains) {
-            items.add(new RecyclerViewItem(mountain.getName()));
 
-
-        }
-
-        adapter.notifyDataSetChanged();
     }
 
 }
