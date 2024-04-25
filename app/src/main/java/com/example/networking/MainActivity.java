@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.danieloskarsson.recyclerviewapp.RecyclerViewItem;
+
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -18,6 +21,8 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     private final String JSON_FILE = "mountains.json";
 
     private RecyclerView recyclerView;
+    private RecyclerViewAdapter adapter;
+    private ArrayList<RecyclerViewItem> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,22 +32,28 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         recyclerView = findViewById(R.id.recycler_view); // Make sure you have a RecyclerView with this ID in your layout
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        items = new ArrayList<>(Arrays.asList(
+                new RecyclerViewItem("Matterhorn"),
+                new RecyclerViewItem("Mont Blanc"),
+                new RecyclerViewItem("Denali")
+        ));
 
-        /*
+
+
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, items, new RecyclerViewAdapter.OnClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
                 Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
             }
-        });*/
-/*
+        });
+
 
         ArrayList<RecyclerViewItem> items = new ArrayList<>(Arrays.asList(
                 new RecyclerViewItem("Matterhorn"),
                 new RecyclerViewItem("Mont Blanc"),
                 new RecyclerViewItem("Denali")
     }
-*/
+
 
         new JsonFile(this, this).execute(JSON_FILE);
     }
