@@ -3,8 +3,8 @@
 
 First a recyclerview was added in the activity_main. Then I created an arraylist<mountain> that will store the mountains data. Then I created the class
 recyclerviewadapter and created the adapter and the viewholder. This is then added in main acitivty as a member variable to populate the recycleview with 
-data. I created a for-loop that iterates through the list of mountains and then creates a new recyclerviewitem for each of the names using 
-mountain.getName(), after the for-loop adapter.notifyDataSetChanged(); is used to update the recyclerview with the new data. Down below is a code snippet
+the new data. I created a for-loop that iterates through the list of mountains and then creates a new recyclerviewitem for each of the names using 
+mountain.getName(), after, the for-loop adapter.notifyDataSetChanged(); is used to update the recyclerview with the new data. Down below is a code snippet
 representing this.
 
     for (Mountain mountain : listOfMountains) {
