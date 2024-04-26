@@ -1,25 +1,25 @@
 
 # Rapport
 
-First I added a recyclerview in the activity_main called recycler_view. Then I created an arraylist<mountain> that will hold the mountains. (( write How i implemented adapter ))
+First a recyclerview was added in the activity_main. Then I created an arraylist<mountain> that will store the mountains data. Then I created the class
+recyclerviewadapter and created the adapter and the viewholder. This is then added in main acitivty as a member variable to populate the recycleview with 
+data. I created a for-loop that iterates through the list of mountains and then creates a new recyclerviewitem for each of the names using 
+mountain.getName(), after the for-loop adapter.notifyDataSetChanged(); is used to update the recyclerview with the new data. Down below is a code snippet
+representing this.
 
-And then a recyclerviewadapter and a viewholder was created in a new Java class "RecyclerViewAdapter". 
-
-
-
-
-
-
-
-
-- Ett kortfattat svar är att föredra. Svar som är längre än en sida text (skärmdumpar och programkod exkluderat) är onödigt långt.
-- Svaret skall ha minst en snutt programkod.
-- Svaret skall inkludera en kort övergripande förklarande text som redogör för vad respektive snutt programkod gör eller som svarar på annan teorifråga.
-- Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
-- I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
+    for (Mountain mountain : listOfMountains) {
+    items.add(new RecyclerViewItem(mountain.getName()));
 
 
-`
+        }
+
+        adapter.notifyDataSetChanged();
+
+    }   
+
+Then at last I created a GetJson method which is responsible for fetching the data from the JSON_URL and FILE. 
+
+Down below is a screenshot attached showing the screen when the program is executed.
 
 ![](mountains.png)
 

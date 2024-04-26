@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
                 new RecyclerViewItem("Denali")
         ));
 
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, items, new RecyclerViewAdapter.OnClickListener() {
+         adapter = new RecyclerViewAdapter(this, items, new RecyclerViewAdapter.OnClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
                 Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
@@ -59,8 +59,8 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         recyclerView.setAdapter(adapter);
 
 
-        new JsonFile(this, this).execute(JSON_FILE);
-        new JsonTask(this).execute(JSON_URL);
+
+        getJson();
 
         for (Mountain mountain : listOfMountains) {
             items.add(new RecyclerViewItem(mountain.getName()));
@@ -71,6 +71,9 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         adapter.notifyDataSetChanged();
 
     }
+
+
+
 
     @Override
     public void onPostExecute(String json) {
@@ -84,5 +87,9 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
     }
 
+    private void getJson() {
+        new JsonTask(this).execute(JSON_URL);
+        new JsonFile(this, this).execute(JSON_FILE);
 }
 
+}
