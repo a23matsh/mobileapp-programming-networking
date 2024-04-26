@@ -24,11 +24,15 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     private final String JSON_URL = "https://mobprog.webug.se/json-api?login=brom";
     private final String JSON_FILE = "mountains.json";
 
-    //private RecyclerView recyclerView;
+
 
     private ArrayList<RecyclerViewItem> items;
 
-    private List<Mountain> listOfMountains;
+    private ArrayList<Mountain> listOfMountains;
+    private RecyclerViewAdapter adapter;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
             }
         });
 
-        RecyclerView recyclerView = findViewById(R.id.recycler_view); // Make sure you have a RecyclerView with this ID in your layout
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
